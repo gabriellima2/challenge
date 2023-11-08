@@ -22,6 +22,8 @@ const config: Config = {
 				others: {
 					green: '#51B853',
 					red: '#DE3838',
+					black: '#09090A',
+					white: '#FFFFFF',
 				},
 			},
 			fontSize: {
