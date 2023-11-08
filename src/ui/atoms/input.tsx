@@ -1,7 +1,7 @@
-import { HTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { cn } from '@/helpers/cn'
 
-type InputProps = HTMLAttributes<HTMLInputElement> & {
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	left?: () => JSX.Element
 	right?: () => JSX.Element
 }
