@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+* {
+	@apply text-font-primary;
+}
+
+li {
+	list-style: none;
+}
+
+a, input {
+	@apply text-font-primary;
+}
