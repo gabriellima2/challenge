@@ -1,8 +1,14 @@
 import { products } from '../db/products'
 
-import { ProductEntity } from '@/entities/product.entity'
-import { Pagination } from '../@types/pagination'
-import { Resolvers } from '../@types/resolvers'
+import {
+	InvalidQuantityException,
+	InvalidParamsException,
+	InvalidTypeException,
+} from './exceptions'
+
+import type { ProductEntity } from '@/entities/product.entity'
+import type { Pagination } from '../@types/pagination'
+import type { Resolvers } from '../@types/resolvers'
 
 interface ProductResolvers extends Resolvers {
 	Query: {
@@ -16,16 +22,12 @@ export const productResolvers: ProductResolvers = {
 			const totalProducts = products.length
 			const { page = 1, limit = totalProducts - 1 } = params
 			if (!Number.isInteger(page) || !Number.isInteger(limit)) {
-				throw new Error()
+				throw new InvalidTypeException()
 			}
-			if (page < 0 || limit < 0) {
-				throw new Error()
-			}
-			if (limit > totalProducts) {
-				throw new Error()
-			}
+			if (page < 0 || limit < 0) throw new InvalidParamsException()
+			if (limit > totalProducts) throw new InvalidQuantityException()
 			const skip = page * limit
-			if (skip > totalProducts) throw new Error()
+			if (skip > totalProducts) throw new InvalidQuantityException()
 			return products.slice(page, skip + 1)
 		},
 	},
