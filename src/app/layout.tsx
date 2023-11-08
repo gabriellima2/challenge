@@ -4,6 +4,7 @@ import { type Metadata } from 'next'
 import { Saira } from 'next/font/google'
 
 import { Header } from '@/ui/components'
+import { MainHeader } from '@/ui/components/main-header'
 
 const font = Saira({ subsets: ['latin'], variable: '--font-primary' })
 
@@ -23,7 +24,7 @@ export default function RootLayout({
 				className={`${font.className} flex w-full items-center justify-center px-5`}
 			>
 				<div className="w-full max-w-[1120px]">
-					<Header />
+					<MainHeader />
 					{children}
 				</div>
 			</body>

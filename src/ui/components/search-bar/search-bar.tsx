@@ -15,7 +15,7 @@ export const SearchBar = (props: SearchBarProps) => {
 		<form
 			onSubmit={(e) => {
 				e.preventDefault()
-				onSearch(value.trim())
+				onSearch(value.trim().toLowerCase())
 			}}
 		>
 			<Input
