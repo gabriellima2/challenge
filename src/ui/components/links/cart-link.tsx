@@ -14,7 +14,7 @@ export const CartLink = (props: CartLinkProps) => {
 			href="/cart"
 			title="Carrinho"
 			aria-label="Ir para o carrinho"
-			className="relative block p-2"
+			className="relative flex min-h-[36px] min-w-[36px] items-center justify-center"
 		>
 			<Image
 				src="/icons/shopping.svg"
@@ -24,7 +24,7 @@ export const CartLink = (props: CartLinkProps) => {
 			/>
 			<Indicator
 				value={quantity.toString()}
-				className="absolute bottom-0 right-0"
+				className="absolute -right-1 bottom-0"
 			/>
 		</Link>
 	)

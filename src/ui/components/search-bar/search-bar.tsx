@@ -17,12 +17,14 @@ export const SearchBar = (props: SearchBarProps) => {
 				e.preventDefault()
 				onSearch(value.trim().toLowerCase())
 			}}
+			className="w-full"
 		>
 			<Input
 				placeholder="Procurando por algo específico?"
 				right={() => <SearchButton />}
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
+				className="block"
 			/>
 		</form>
 	)
