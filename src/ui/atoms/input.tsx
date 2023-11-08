@@ -14,7 +14,7 @@ export const Input = (props: InputProps) => {
 			<input
 				{...rest}
 				className={cn(
-					'placeholder:text-font-primary h-[42px] w-full min-w-[350px] p-2 outline-none',
+					'placeholder:text-font-primary focus:border-b-font-primary h-[42px] w-full min-w-[350px] border-b-2 p-2 outline-none',
 					rest.className
 				)}
 			/>
