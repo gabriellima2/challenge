@@ -99,8 +99,8 @@ export const products = mock.map((product) => ({
 	...product,
 	id: faker.string.uuid(),
 	price_in_cents: faker.number.int({
-		min: 2000,
-		max: 10000,
+		min: 20,
+		max: 100,
 	}),
 	sales: faker.number.int(40),
 	created_at: faker.date.past(),
