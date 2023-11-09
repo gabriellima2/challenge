@@ -15,6 +15,11 @@ class ProductService {
 		>({
 			query: GET_ALL_PRODUCTS,
 			variables: { page, limit },
+			context: {
+				fetchOptions: {
+					next: { revalidate: 5 },
+				},
+			},
 		})
 		return {
 			data: data.products,
