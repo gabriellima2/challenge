@@ -3,8 +3,8 @@ import './globals.css'
 import { type Metadata } from 'next'
 import { Saira } from 'next/font/google'
 
-import { Header } from '@/ui/components'
 import { MainHeader } from '@/ui/components/main-header'
+import { Providers } from '@/ui/providers'
 
 const font = Saira({ subsets: ['latin'], variable: '--font-primary' })
 
@@ -23,10 +23,12 @@ export default function RootLayout({
 			<body
 				className={`${font.className} flex w-full items-center justify-center px-5`}
 			>
-				<div className="w-full max-w-[1120px]">
-					<MainHeader />
-					{children}
-				</div>
+				<Providers>
+					<div className="w-full max-w-[1120px]">
+						<MainHeader />
+						{children}
+					</div>
+				</Providers>
 			</body>
 		</html>
 	)
