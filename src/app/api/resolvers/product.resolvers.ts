@@ -27,8 +27,10 @@ export const productResolvers: ProductResolvers = {
 			if (page < 0 || limit < 0) throw new InvalidParamsException()
 			if (limit > totalProducts) throw new InvalidQuantityException()
 			const skip = page * limit
-			if (skip > totalProducts) throw new InvalidQuantityException()
-			return products.slice(page, skip + 1)
+			const start = (page - 1) * limit
+			if (start > totalProducts || skip > totalProducts)
+				throw new InvalidQuantityException()
+			return products.slice(start, skip + 1)
 		},
 	},
 }
