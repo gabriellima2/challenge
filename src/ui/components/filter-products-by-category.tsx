@@ -1,5 +1,4 @@
 'use client'
-
 import { FilterByCategory } from './filter-by-category/filter-by-category'
 import { CategoryEntity } from '@/entities/category.entity'
 

@@ -24,7 +24,7 @@ export const Product = (props: ProductProps) => {
 			/>
 			<section className="flex flex-col gap-4 p-2">
 				<h1 className="font-light text-font-secondary">{name}</h1>
-				<span className="text-others-black font-bold">{price}</span>
+				<span className="font-bold text-others-black">{price}</span>
 			</section>
 		</Link>
 	)
