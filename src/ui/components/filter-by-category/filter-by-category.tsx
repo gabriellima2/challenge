@@ -13,10 +13,10 @@ type FilterByCategoryProps = HTMLAttributes<HTMLUListElement> &
 	}
 
 export const FilterByCategory = (props: FilterByCategoryProps) => {
-	const { initialValue, items, handleChange, ...rest } = props
+	const { initialValue, items, onChange, ...rest } = props
 	const { currentValue, handleClick } = useFilterByCategory({
 		initialValue,
-		handleChange,
+		onChange,
 	})
 	return (
 		<ul {...rest}>
