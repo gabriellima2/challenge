@@ -11,6 +11,6 @@ export const productTypeDefs = `
 	}
 
 	type Query {
-		products(page: Int, limit: Int): [Product]
+		products(page: Int, limit: Int, category: String): [Product]
 	}
 `

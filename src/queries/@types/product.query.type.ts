@@ -7,4 +7,5 @@ export interface GetAllProducts {
 export interface GetAllProductsVariables {
 	page?: number
 	limit?: number
+	category?: string
 }
