@@ -1,18 +1,16 @@
 import { products } from '../db/products'
 
-import {
-	InvalidQuantityException,
-	InvalidParamsException,
-	InvalidTypeException,
-} from './exceptions'
-
 import { CategoryEntity } from '@/entities/category.entity'
+import { paginate } from '@/helpers/paginate'
 
 import type { ProductEntity } from '@/entities/product.entity'
-import type { Pagination } from '../@types/pagination'
 import type { Resolvers } from '../@types/resolvers'
 
-type ProductsQueryParams = Pagination & { category?: CategoryEntity }
+type ProductsQueryParams = {
+	page?: number
+	limit?: number
+	category?: CategoryEntity
+}
 
 interface ProductResolvers extends Resolvers {
 	Query: {
@@ -23,28 +21,14 @@ interface ProductResolvers extends Resolvers {
 export const productResolvers: ProductResolvers = {
 	Query: {
 		products: (_, params) => {
-			const totalProducts = products.length
-			const {
-				page = 1,
-				limit = totalProducts - 1,
-				category = CategoryEntity.All,
-			} = params
-			if (!Number.isInteger(page) || !Number.isInteger(limit)) {
-				throw new InvalidTypeException()
-			}
-			if (page < 0 || limit < 0) throw new InvalidParamsException()
-			if (limit > totalProducts) throw new InvalidQuantityException()
-			const skip = page * limit
-			const start = (page - 1) * limit
-			if (start > totalProducts || skip > totalProducts)
-				throw new InvalidQuantityException()
+			const { category = CategoryEntity.All, ...rest } = params
 			if (category !== CategoryEntity.All) {
 				const filteredProducts = products.filter(
 					(product) => product.category === category
 				)
-				return filteredProducts.slice(start, skip + 1)
+				return paginate(filteredProducts, rest)
 			}
-			return products.slice(start, skip + 1)
+			return paginate(products, rest)
 		},
 	},
 }
