@@ -6,12 +6,13 @@ import {
 	InvalidTypeException,
 } from './exceptions'
 
-import type { CategoryEntity } from '@/entities/category.entity'
+import { CategoryEntity } from '@/entities/category.entity'
+
 import type { ProductEntity } from '@/entities/product.entity'
 import type { Pagination } from '../@types/pagination'
 import type { Resolvers } from '../@types/resolvers'
 
-type ProductsQueryParams = Pagination & { category?: 'all' | CategoryEntity }
+type ProductsQueryParams = Pagination & { category?: CategoryEntity }
 
 interface ProductResolvers extends Resolvers {
 	Query: {
@@ -23,7 +24,11 @@ export const productResolvers: ProductResolvers = {
 	Query: {
 		products: (_, params) => {
 			const totalProducts = products.length
-			const { page = 1, limit = totalProducts - 1, category = 'all' } = params
+			const {
+				page = 1,
+				limit = totalProducts - 1,
+				category = CategoryEntity.All,
+			} = params
 			if (!Number.isInteger(page) || !Number.isInteger(limit)) {
 				throw new InvalidTypeException()
 			}
@@ -33,7 +38,7 @@ export const productResolvers: ProductResolvers = {
 			const start = (page - 1) * limit
 			if (start > totalProducts || skip > totalProducts)
 				throw new InvalidQuantityException()
-			if (category !== 'all') {
+			if (category !== CategoryEntity.All) {
 				const filteredProducts = products.filter(
 					(product) => product.category === category
 				)
