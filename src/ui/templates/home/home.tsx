@@ -4,7 +4,7 @@ import { ProductList } from '@/ui/components'
 import { Error, Loading } from '@/ui/atoms'
 
 import { useGetProductsByCategory } from '@/hooks/use-get-products-by-category'
-import { useProductsCategory } from '@/hooks/use-products-category'
+import { useProductsCategory } from './hooks/use-products-category'
 
 export const Home = () => {
 	const { category, onCategoryClick } = useProductsCategory()
