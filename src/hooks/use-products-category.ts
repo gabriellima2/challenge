@@ -3,5 +3,5 @@ import { CategoryEntity } from '@/entities/category.entity'
 
 export function useProductsCategory() {
 	const [category, setCategory] = useState<CategoryEntity>(CategoryEntity.All)
-	return { category, onCategoryChange: (v: CategoryEntity) => setCategory(v) }
+	return { category, onCategoryClick: (v: CategoryEntity) => setCategory(v) }
 }

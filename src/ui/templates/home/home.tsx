@@ -7,12 +7,12 @@ import { useGetProductsByCategory } from '@/hooks/use-get-products-by-category'
 import { useProductsCategory } from '@/hooks/use-products-category'
 
 export const Home = () => {
-	const { category, onCategoryChange } = useProductsCategory()
+	const { category, onCategoryClick } = useProductsCategory()
 	const { data, error, loading } = useGetProductsByCategory(category)
 	return (
 		<article className="flex flex-col gap-6">
 			<header className="flex flex-row flex-wrap justify-between gap-6">
-				<FilterProducts onChange={onCategoryChange} />
+				<FilterProducts value={category} onClick={onCategoryClick} />
 				<OrderProducts value="" onChange={(v) => console.log(v)} />
 			</header>
 			<main>
