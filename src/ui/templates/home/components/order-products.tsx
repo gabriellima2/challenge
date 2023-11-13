@@ -2,10 +2,10 @@ import { Dropdown } from '@/ui/atoms'
 
 export enum OrderValues {
 	Empty = '',
-	New = 'new',
-	PriceDesc = 'price-desc',
-	PriceCresc = 'price-cresc',
-	BestSellers = 'best-sellers',
+	Newest = 'newest',
+	PriceDescending = 'price-desc',
+	PriceAscending = 'price-asc',
+	TopSelling = 'top-selling',
 }
 
 type OrderProductsProps = {
@@ -22,10 +22,10 @@ export const OrderProducts = (props: OrderProductsProps) => {
 			onChange={(e) => onChange(e.target.value as OrderValues)}
 			options={[
 				{ text: 'Organizar por', value: OrderValues.Empty },
-				{ text: 'Novidades', value: OrderValues.New },
-				{ text: 'Preço: Maior - Menor', value: OrderValues.PriceDesc },
-				{ text: 'Preço: Menor - Maior', value: OrderValues.PriceCresc },
-				{ text: 'Mais vendidos', value: OrderValues.BestSellers },
+				{ text: 'Novidades', value: OrderValues.Newest },
+				{ text: 'Preço: Maior - Menor', value: OrderValues.PriceDescending },
+				{ text: 'Preço: Menor - Maior', value: OrderValues.PriceAscending },
+				{ text: 'Mais vendidos', value: OrderValues.TopSelling },
 			]}
 		/>
 	)
