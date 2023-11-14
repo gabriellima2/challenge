@@ -3,12 +3,12 @@ import { FilterProducts, OrderProducts } from './components'
 import { ProductList } from '@/ui/components'
 import { Error, Loading } from '@/ui/atoms'
 
-import { useGetProductsByCategory } from '@/hooks/use-get-products-by-category'
 import { useProductsCategory } from './hooks/use-products-category'
+import { useGetProducts } from '@/hooks/use-get-products'
 
 export const Home = () => {
 	const { category, onCategoryClick } = useProductsCategory()
-	const { data, error, loading } = useGetProductsByCategory(category)
+	const { data, error, loading } = useGetProducts({ category })
 	return (
 		<article className="flex flex-col gap-6">
 			<header className="flex flex-row flex-wrap justify-between gap-6">
