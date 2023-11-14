@@ -5,7 +5,7 @@ import { InvalidTypeException } from '@/exceptions/invalid-type.exception'
 type PaginateOptions = { page?: number; limit?: number }
 
 export function paginate<T>(data: T[], options: PaginateOptions): T[] {
-	const { page = 1, limit = data.length - 1 } = options
+	const { page = 1, limit = data.length } = options
 	if (!Number.isInteger(page) || !Number.isInteger(limit)) {
 		throw new InvalidTypeException()
 	}
@@ -15,5 +15,5 @@ export function paginate<T>(data: T[], options: PaginateOptions): T[] {
 	const total = data.length
 	if (limit > total) throw new InvalidQuantityException()
 	if (start > total || skip > total) throw new InvalidQuantityException()
-	return data.slice(start, skip + 1)
+	return data.slice(start, skip)
 }

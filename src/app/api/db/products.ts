@@ -95,13 +95,20 @@ export const mock: Mock[] = [
 	},
 ]
 
-export const products = mock.map((product) => ({
-	...product,
-	id: faker.string.uuid(),
-	price_in_cents: faker.number.int({
-		min: 20,
-		max: 100,
-	}),
-	sales: faker.number.int(40),
-	created_at: faker.date.past(),
-}))
+const DEFAULT_PAGES = 5
+const TOTAL_ITEMS = DEFAULT_PAGES * mock.length
+
+export const products: ProductEntity[] = Array(TOTAL_ITEMS)
+	.fill(1)
+	.flatMap(() => {
+		return mock.map((product) => ({
+			...product,
+			id: faker.string.uuid(),
+			price_in_cents: faker.number.int({
+				min: 20,
+				max: 100,
+			}),
+			sales: faker.number.int(40),
+			created_at: faker.date.past(),
+		})) as ProductEntity[]
+	})
