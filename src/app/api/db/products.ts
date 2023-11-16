@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker'
 
 import { CategoryEntity } from '@/entities/category.entity'
 import { ProductEntity } from '@/entities/product.entity'
+import { TOTAL_PAGES } from '@/constants/pagination'
 
 type Mock = Pick<
 	ProductEntity,
@@ -95,20 +96,23 @@ export const mock: Mock[] = [
 	},
 ]
 
-const DEFAULT_PAGES = 5
-const TOTAL_ITEMS = DEFAULT_PAGES * mock.length
+const TOTAL_ITEMS = TOTAL_PAGES * mock.length
+const createProducts = () => {
+	return Array(TOTAL_ITEMS)
+		.fill(1)
+		.map(() => {
+			const product = mock[Math.floor(Math.random() * mock.length)]
+			return {
+				...product,
+				id: faker.string.uuid(),
+				price_in_cents: faker.number.int({
+					min: 20,
+					max: 100,
+				}),
+				sales: faker.number.int(40),
+				created_at: faker.date.past(),
+			} as ProductEntity
+		})
+}
 
-export const products: ProductEntity[] = Array(TOTAL_ITEMS)
-	.fill(1)
-	.flatMap(() => {
-		return mock.map((product) => ({
-			...product,
-			id: faker.string.uuid(),
-			price_in_cents: faker.number.int({
-				min: 20,
-				max: 100,
-			}),
-			sales: faker.number.int(40),
-			created_at: faker.date.past(),
-		})) as ProductEntity[]
-	})
+export const products: ProductEntity[] = createProducts()

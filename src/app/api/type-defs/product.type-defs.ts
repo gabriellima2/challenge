@@ -10,7 +10,14 @@ export const productTypeDefs = `
 		created_at: String!
 	}
 
+	type ProductsQueryReturn {
+		items: [Product]
+		totalItems: Int!
+		totalPages: Int!
+		itemsPerPage: Int!
+	}
+
 	type Query {
-		products(page: Int, limit: Int, category: String): [Product]
+		products(page: Int, limit: Int, category: String): ProductsQueryReturn
 	}
 `

@@ -2,9 +2,15 @@ import { InvalidQuantityException } from '@/exceptions/invalid-quantity.exceptio
 import { InvalidParamsException } from '@/exceptions/invalid-params.exception'
 import { InvalidTypeException } from '@/exceptions/invalid-type.exception'
 
-type PaginateOptions = { page?: number; limit?: number }
+import type { PaginationEntity } from '@/entities/pagination.entity'
 
-export function paginate<T>(data: T[], options: PaginateOptions): T[] {
+type PaginateOptions = { page?: number; limit?: number }
+type PaginateReturn<T> = PaginationEntity<T>
+
+export function paginate<T>(
+	data: T[],
+	options: PaginateOptions
+): PaginateReturn<T> {
 	const { page = 1, limit = data.length } = options
 	if (!Number.isInteger(page) || !Number.isInteger(limit)) {
 		throw new InvalidTypeException()
@@ -14,6 +20,11 @@ export function paginate<T>(data: T[], options: PaginateOptions): T[] {
 	const start = (page - 1) * limit
 	const total = data.length
 	if (limit > total) throw new InvalidQuantityException()
-	if (start > total || skip > total) throw new InvalidQuantityException()
-	return data.slice(start, skip)
+	if (start > total) throw new InvalidQuantityException()
+	return {
+		items: data.slice(start, skip),
+		totalItems: total,
+		totalPages: Math.ceil(total / limit),
+		itemsPerPage: limit,
+	}
 }
