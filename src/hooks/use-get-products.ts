@@ -9,12 +9,7 @@ import type {
 export type UseGetProductsParams = GetAllProductsVariables
 
 export function useGetProducts(params?: UseGetProductsParams) {
-	const a = useQuery<GetAllProducts, GetAllProductsVariables>(
-		GET_ALL_PRODUCTS,
-		{
-			variables: params || {},
-		}
-	)
-	console.log(a)
-	return a
+	return useQuery<GetAllProducts, GetAllProductsVariables>(GET_ALL_PRODUCTS, {
+		variables: params || {},
+	})
 }
