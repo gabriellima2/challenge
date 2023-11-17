@@ -10,7 +10,7 @@ export const ProductsPagination = (props: ProductsPaginationProps) => {
 	const { currentPage, totalPages, onClick } = props
 	if (totalPages < 1) return
 	return (
-		<section className="flex gap-1">
+		<section className="flex gap-1 sm:justify-end">
 			<Pagination
 				currentPage={currentPage}
 				onClick={(page) => onClick(totalPages, page)}
