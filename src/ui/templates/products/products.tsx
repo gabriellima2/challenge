@@ -17,6 +17,7 @@ export const Products = () => {
 					description={product.description}
 					imageUrl={product.image_url}
 					priceInCents={product.price_in_cents}
+					handleAddToCart={(id) => console.log('Adding to cart... id: ' + id)}
 				/>
 			</article>
 		</main>
