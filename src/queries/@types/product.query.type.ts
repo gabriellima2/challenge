@@ -10,3 +10,11 @@ export interface GetAllProductsVariables {
 	limit?: number
 	category?: string
 }
+
+export interface GetProductById {
+	product: ProductEntity
+}
+
+export interface GetProductByIdVariables {
+	id: string
+}

@@ -13,18 +13,21 @@ type ProductsQueryParams = {
 	category?: CategoryEntity
 }
 
+type ProductQueryParams = { id: string }
+
 interface ProductResolvers extends Resolvers {
 	Query: {
-		products: (
+		products(
 			_: unknown,
 			params: ProductsQueryParams
-		) => PaginationEntity<ProductEntity>
+		): PaginationEntity<ProductEntity>
+		product(_: unknown, params: ProductQueryParams): ProductEntity | undefined
 	}
 }
 
 export const productResolvers: ProductResolvers = {
 	Query: {
-		products: (_, params) => {
+		products(_, params) {
 			const { category = CategoryEntity.All, ...rest } = params
 			if (category !== CategoryEntity.All) {
 				const filteredProducts = products.filter(
@@ -33,6 +36,12 @@ export const productResolvers: ProductResolvers = {
 				return paginate(filteredProducts, rest)
 			}
 			return paginate(products, rest)
+		},
+		product(_, params) {
+			const { id } = params
+			const findedProduct = products.filter((product) => product.id === id)
+			if (!findedProduct) return
+			return findedProduct[0]
 		},
 	},
 }
