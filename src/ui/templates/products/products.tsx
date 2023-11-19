@@ -8,18 +8,16 @@ const [product] = products
 
 export const Products = () => {
 	return (
-		<main>
-			<article>
-				<ToBackButton />
-				<ProductDetails
-					id={product.id}
-					name={product.name}
-					description={product.description}
-					imageUrl={product.image_url}
-					priceInCents={product.price_in_cents}
-					handleAddToCart={(id) => console.log('Adding to cart... id: ' + id)}
-				/>
-			</article>
+		<main className="flex flex-col gap-4 pb-5 pt-2">
+			<ToBackButton />
+			<ProductDetails
+				id={product.id}
+				name={product.name}
+				description={product.description}
+				imageUrl={product.image_url}
+				priceInCents={product.price_in_cents}
+				handleAddToCart={(id) => console.log('Adding to cart... id: ' + id)}
+			/>
 		</main>
 	)
 }

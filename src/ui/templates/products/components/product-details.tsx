@@ -19,14 +19,15 @@ export const ProductDetails = (props: ProductDetailsProps) => {
 	const price = useCurrencyFormatter(priceInCents)
 	const productType = useMemo(() => name.split(' ')[0], [name])
 	return (
-		<section className="flex gap-8">
+		<section className="flex flex-wrap gap-8">
 			<Image
 				src={imageUrl}
 				alt={`Imagem do produto ${name}`}
 				width={640}
 				height={580}
+				className="flex-grow lg:flex-none"
 			/>
-			<section className="flex flex-col justify-between">
+			<section className="flex min-w-[300px] flex-1 flex-col justify-between gap-16">
 				<div className="flex flex-col gap-16">
 					<header className="flex flex-col gap-4">
 						<div className="order-2 flex flex-col gap-2">
