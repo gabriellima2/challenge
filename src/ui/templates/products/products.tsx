@@ -2,11 +2,13 @@
 import { ProductDetails } from './components'
 import { ToBackButton } from '@/ui/atoms'
 
+import { useCartStore } from '@/store/cart-store'
 import { products } from '@/app/api/db/products'
 
 const [product] = products
 
 export const Products = () => {
+	const cart = useCartStore((state) => state)
 	return (
 		<main className="flex flex-col gap-4 pb-5 pt-2">
 			<ToBackButton />
@@ -16,7 +18,7 @@ export const Products = () => {
 				description={product.description}
 				imageUrl={product.image_url}
 				priceInCents={product.price_in_cents}
-				handleAddToCart={(id) => console.log('Adding to cart... id: ' + id)}
+				handleAddToCart={cart.insert}
 			/>
 		</main>
 	)
