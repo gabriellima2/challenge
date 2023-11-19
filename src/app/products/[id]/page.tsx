@@ -6,5 +6,5 @@ type PageProps = {
 
 export default function Page(props: PageProps) {
 	const { params } = props
-	return <Products />
+	return <Products id={params.id} />
 }
