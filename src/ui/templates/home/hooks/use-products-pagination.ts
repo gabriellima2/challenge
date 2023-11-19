@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useProductsPagination() {
 	const [currentPage, setCurrentPage] = useState(1)
@@ -8,5 +8,7 @@ export function useProductsPagination() {
 		setCurrentPage(page)
 	}
 
-	return { currentPage, onPageClick }
+	const resetInitialPage = useCallback(() => setCurrentPage(1), [])
+
+	return { currentPage, resetInitialPage, onPageClick }
 }

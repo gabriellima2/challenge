@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { useProductsPagination } from './use-products-pagination'
 import { useProductsCategory } from './use-products-category'
 import { useGetProducts } from '@/hooks/use-get-products'
@@ -6,7 +8,10 @@ import { ITEMS_PER_PAGE } from '@/constants/pagination'
 
 export function useHomeState() {
 	const { category, onCategoryClick } = useProductsCategory()
-	const { currentPage, onPageClick } = useProductsPagination()
+	const { currentPage, resetInitialPage, onPageClick } = useProductsPagination()
+
+	useEffect(() => resetInitialPage(), [category, resetInitialPage])
+
 	const { data, error, loading } = useGetProducts({
 		category,
 		page: currentPage,
