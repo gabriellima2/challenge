@@ -37,6 +37,9 @@ const config: Config = {
 			fontFamily: {
 				primary: ['var(--font-primary)', 'sans-serif'],
 			},
+			gridTemplateColumns: {
+				responsive: 'repeat(auto-fill, minmax(256px, 1fr))',
+			},
 		},
 	},
 	plugins: [],

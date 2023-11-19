@@ -11,14 +11,9 @@ type ProductListProps = {
 export const ProductList = (props: ProductListProps) => {
 	const { products, className } = props
 	return (
-		<ul
-			className={cn(
-				'flex flex-wrap justify-center gap-6 xl:justify-center',
-				className
-			)}
-		>
+		<ul className={cn('grid-cols-responsive grid gap-6', className)}>
 			{products.map((product) => (
-				<li key={product.id} className="w-full sm:w-[48%] md:w-auto">
+				<li key={product.id} className="w-full">
 					<Product
 						id={product.id}
 						name={product.name}
