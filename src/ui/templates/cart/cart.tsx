@@ -1,5 +1,10 @@
-import Image from 'next/image'
+'use client'
+import { CartOverview, CartSummaryForm, ProductList } from './components'
 import { ToBackButton } from '@/ui/atoms'
+
+import { products } from '@/app/api/db/products'
+
+const [product] = products
 
 export const Cart = () => {
 	return (
@@ -8,54 +13,20 @@ export const Cart = () => {
 			<main>
 				<section>
 					<h1>Seu carrinho</h1>
-					<p>
-						Total de (3 produtos) <strong>R$161,00</strong>
-					</p>
+					<CartOverview totalItems={3} totalPrice="R$ 64,50" />
 				</section>
-				<ol>
-					<li>
-						<figure>
-							<Image
-								src="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-								alt="Caneca"
-								width={260}
-								height={215}
-							/>
-							<figcaption>
-								<header>
-									<h2>Caneca de cerâmica rústica</h2>
-									<button>Remover</button>
-								</header>
-								<p>
-									Aqui vem um texto descritivo do produto, esta caixa de texto
-									servirá apenas de exemplo para que simule algum texto que
-									venha a ser inserido nesse campo, descrevendo tal produto.
-								</p>
-								<footer>
-									<p>Input</p>
-									<p>R$ 40,00</p>
-								</footer>
-							</figcaption>
-						</figure>
-					</li>
-				</ol>
+				<ProductList
+					products={[{ ...product, quantity: 1 }]}
+					handleRemoveFromCart={(id) => console.log(id)}
+				/>
 			</main>
 			<aside>
-				<section>
-					<h1>Resumo do pedido</h1>
-					<dl>
-						<dt>Subtotal de produtos</dt>
-						<dd>R$ 161,00</dd>
-						<dt>Entrega</dt>
-						<dd>R$ 40,00</dd>
-					</dl>
-					<p>
-						Total <span>R$ 201,00</span>
-					</p>
-					<button type="button" title="Finalizar">
-						Finalizar compra
-					</button>
-				</section>
+				<CartSummaryForm
+					subtotal="R$ 161,00"
+					delivery="R$ 40,00"
+					total="R$ 201,00"
+					handleCheckout={() => console.log('Checkout...')}
+				/>
 			</aside>
 		</article>
 	)
