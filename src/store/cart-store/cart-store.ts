@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+
+import { ProductAlreadyInCart } from './exceptions/product-already-in-cart.exception'
 import type { CartStoreState } from './@types/cart-store-state'
 
 export const useCartStore = create<CartStoreState>((set, get) => ({
@@ -7,7 +9,7 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
 	insert: (id: string) => {
 		const state = get()
 		const isAlreadyAdded = state.items[id]
-		if (isAlreadyAdded) return
+		if (isAlreadyAdded) throw new ProductAlreadyInCart()
 		set((state) => ({
 			...state,
 			items: { ...state.items, [id]: { id, quantity: 1 } },
