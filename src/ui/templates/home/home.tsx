@@ -1,6 +1,10 @@
 'use client'
-import { FilterProducts, OrderProducts, ProductsPagination } from './components'
-import { ProductList } from '@/ui/components'
+import {
+	FilterProducts,
+	OrderProducts,
+	ProductsPagination,
+	ProductList,
+} from './components'
 import { Error, Loading } from '@/ui/atoms'
 
 import { useHomeState } from './hooks/use-home-state'

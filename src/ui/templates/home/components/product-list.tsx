@@ -1,4 +1,4 @@
-import { Product } from './product'
+import { Product } from '../../../components/product'
 
 import { cn } from '@/helpers/cn'
 import type { ProductEntity } from '@/entities/product.entity'
@@ -11,7 +11,7 @@ type ProductListProps = {
 export const ProductList = (props: ProductListProps) => {
 	const { products, className } = props
 	return (
-		<ul className={cn('grid-cols-responsive grid gap-6', className)}>
+		<ul className={cn('grid grid-cols-responsive gap-6', className)}>
 			{products.map((product) => (
 				<li key={product.id} className="w-full">
 					<Product
