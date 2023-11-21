@@ -1,24 +1,18 @@
-import { InputHTMLAttributes, useRef } from 'react'
+import { InputHTMLAttributes } from 'react'
 
 import { ControlButton } from './atoms/control-button'
+
+import { useInputNumberState } from './hooks/use-input-number-state'
 import { cn } from '@/helpers/cn'
 
-type InputNumberProps = InputHTMLAttributes<HTMLInputElement>
+type InputNumberProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+	value?: string | number
+}
 
 export const InputNumber = (props: InputNumberProps) => {
-	const { className, value, min, max, ...rest } = props
-	const ref = useRef<HTMLInputElement | null>(null)
-
-	const hasMinValue = min && value === min
-	const hasMaxValue = max && value === max
-
-	const handleControlClick = (action: 'stepUp' | 'stepDown') => {
-		if (!ref.current || !ref.current[action]) return
-		ref.current[action]()
-		const event = new Event('change', { bubbles: true })
-		ref.current.dispatchEvent(event)
-	}
-
+	const { className, value = '', min, max, ...rest } = props
+	const { ref, hasMaxValue, hasMinValue, handleControlClick } =
+		useInputNumberState({ value, maxValue: max, minValue: min })
 	return (
 		<div className="border-others-gray flex h-11 w-fit items-center rounded-lg border-[1px]">
 			<input
