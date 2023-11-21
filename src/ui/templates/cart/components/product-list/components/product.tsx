@@ -1,6 +1,8 @@
 import Image from 'next/image'
 
+import { ProductQuantity } from './product-quantity'
 import { RemoveButton } from '@/ui/atoms'
+
 import { useCurrencyFormatter } from '@/hooks/use-currency-formatter'
 
 type ProductProps = {
@@ -31,7 +33,10 @@ export const Product = (props: ProductProps) => {
 				</header>
 				<p>{description}</p>
 				<footer>
-					<p>Quantidade: {quantity}</p>
+					<ProductQuantity
+						value={quantity}
+						onQuantityChange={(value) => console.log('New quantity ' + value)}
+					/>
 					<p>{total}</p>
 				</footer>
 			</figcaption>
