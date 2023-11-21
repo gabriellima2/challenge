@@ -24,6 +24,7 @@ const config: Config = {
 					red: '#DE3838',
 					black: '#09090A',
 					white: '#FFFFFF',
+					gray: '#A8A8B3',
 				},
 			},
 			fontSize: {
