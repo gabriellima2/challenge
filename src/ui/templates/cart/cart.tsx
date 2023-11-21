@@ -1,5 +1,5 @@
 'use client'
-import { CartOverview, CartSummaryForm, ProductList } from './components'
+import { CartOverview, CheckoutForm, ProductList } from './components'
 import { ToBackButton } from '@/ui/atoms'
 
 import { products } from '@/app/api/db/products'
@@ -21,7 +21,7 @@ export const Cart = () => {
 				/>
 			</main>
 			<aside>
-				<CartSummaryForm
+				<CheckoutForm
 					subtotal="R$ 161,00"
 					delivery="R$ 40,00"
 					total="R$ 201,00"

@@ -1,4 +1,6 @@
 import Image from 'next/image'
+
+import { RemoveButton } from '@/ui/atoms'
 import { useCurrencyFormatter } from '@/hooks/use-currency-formatter'
 
 type ProductProps = {
@@ -25,14 +27,7 @@ export const Product = (props: ProductProps) => {
 			<figcaption>
 				<header>
 					<h2>{name}</h2>
-					<button
-						type="button"
-						title="Remover"
-						aria-label="Remover produto do carrinho"
-						onClick={handleRemove}
-					>
-						Remover
-					</button>
+					<RemoveButton onClick={handleRemove} />
 				</header>
 				<p>{description}</p>
 				<footer>
