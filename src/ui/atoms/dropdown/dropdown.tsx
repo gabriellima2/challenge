@@ -1,4 +1,6 @@
 import { SelectHTMLAttributes } from 'react'
+
+import { Options } from './atoms/options'
 import { cn } from '@/helpers/cn'
 
 export type DropdownOption = {
@@ -28,16 +30,7 @@ export const Dropdown = (props: DropdownProps) => {
 					className
 				)}
 			>
-				{options.map((item) => (
-					<option
-						value={item.value}
-						key={item.value}
-						disabled={rest.value === item.value}
-						className="font-primary"
-					>
-						{item.text}
-					</option>
-				))}
+				<Options activeValue={rest.value as string} options={options} />
 			</select>
 		</label>
 	)
