@@ -14,7 +14,7 @@ export const InputNumber = (props: InputNumberProps) => {
 	const { ref, hasMaxValue, hasMinValue, handleControlClick } =
 		useInputNumberState({ value, maxValue: max, minValue: min })
 	return (
-		<div className="border-others-gray flex h-11 w-fit items-center rounded-lg border-[1px]">
+		<div className="flex h-11 w-fit items-center rounded-lg border-[1px] border-others-gray">
 			<input
 				type="number"
 				ref={ref}

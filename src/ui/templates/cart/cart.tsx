@@ -8,13 +8,15 @@ const [product] = products
 
 export const Cart = () => {
 	return (
-		<article>
+		<article className="flex flex-col gap-4">
 			<ToBackButton />
-			<main>
-				<section>
-					<h1>Seu carrinho</h1>
+			<main className="flex flex-col gap-8">
+				<header className="flex flex-col gap-2">
+					<h1 className="font-primary text-lg font-medium uppercase text-font-secondary">
+						Seu carrinho
+					</h1>
 					<CartOverview totalItems={3} totalPrice="R$ 64,50" />
-				</section>
+				</header>
 				<ProductList
 					products={[{ ...product, quantity: 1 }]}
 					handleRemoveFromCart={(id) => console.log(id)}

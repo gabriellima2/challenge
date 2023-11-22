@@ -10,7 +10,7 @@ export const ToBackButton = () => {
 			title="Voltar"
 			type="button"
 			aria-label="Voltar para a tela anterior"
-			className="flex gap-2 p-2 font-medium"
+			className="flex gap-2 py-2 pr-2 font-medium"
 		>
 			<Image src="/icons/back.svg" alt="Arrow Back" width={24} height={24} />
 			Voltar
