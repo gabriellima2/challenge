@@ -18,3 +18,11 @@ export interface GetProductById {
 export interface GetProductByIdVariables {
 	id: string
 }
+
+export interface GetProductsByIds {
+	productsByIds: ProductEntity[]
+}
+
+export interface GetProductsByIdsVariables {
+	ids: string[]
+}

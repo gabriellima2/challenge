@@ -20,5 +20,6 @@ export const productTypeDefs = `
 	type Query {
 		products(page: Int, limit: Int, category: String): ProductsQueryReturn
 		product(id: String!): Product
+		productsByIds(ids: [String]): [Product]
 	}
 `
