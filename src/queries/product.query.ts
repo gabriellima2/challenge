@@ -34,3 +34,18 @@ export const GET_PRODUCT_BY_ID = gql`
 		}
 	}
 `
+
+export const GET_PRODUCTS_BY_IDS = gql`
+	query GetProductsByIds($ids: [String]) {
+		productsByIds(ids: $ids) {
+			id
+			name
+			description
+			image_url
+			category
+			price_in_cents
+			sales
+			created_at
+		}
+	}
+`
