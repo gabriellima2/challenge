@@ -16,16 +16,19 @@ export const CheckoutForm = (props: CheckoutFormProps) => {
 				e.preventDefault()
 				handleCheckout()
 			}}
+			className="flex h-full flex-col gap-8"
 		>
-			<h1>Resumo do pedido</h1>
+			<h1 className="text-md font-semibold uppercase text-font-secondary">
+				Resumo do pedido
+			</h1>
 			<OrderSummary
 				infos={[
 					{ name: 'Subtotal de produtos', value: subtotal },
 					{ name: 'Entrega', value: delivery },
 				]}
 			/>
-			<p>
-				Total <span>{total}</span>
+			<p className="flex justify-between font-semibold text-font-secondary">
+				Total <span className="text-inherit">{total}</span>
 			</p>
 			<CheckoutButton />
 		</form>

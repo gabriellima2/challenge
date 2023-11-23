@@ -19,7 +19,7 @@ export const Product = (props: ProductProps) => {
 		props
 	const total = useCurrencyFormatter(priceInCents * quantity)
 	return (
-		<figure className="flex max-w-[740px] flex-wrap">
+		<figure className="flex flex-wrap lg:max-w-[740px]">
 			<Image
 				src={imageUrl}
 				alt={`Imagem do produto ${name}`}

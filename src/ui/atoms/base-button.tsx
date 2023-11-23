@@ -10,7 +10,7 @@ export const BaseButton = (props: BaseButtonProps) => {
 			type="button"
 			{...rest}
 			className={cn(
-				'flex h-11 w-full flex-1 items-center justify-center gap-2 rounded bg-brand-blue font-medium uppercase text-others-white transition-opacity hover:opacity-90',
+				'flex h-11 max-h-11 min-h-[44px] w-full flex-1 items-center justify-center gap-2 rounded bg-brand-blue font-medium uppercase text-others-white transition-opacity hover:opacity-90',
 				className
 			)}
 		/>

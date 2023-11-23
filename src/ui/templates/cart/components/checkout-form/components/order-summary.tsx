@@ -10,7 +10,7 @@ type OrderSummaryProps = {
 export const OrderSummary = (props: OrderSummaryProps) => {
 	const { infos } = props
 	return (
-		<dl>
+		<dl className="flex flex-col gap-2">
 			{infos.map((info) => (
 				<OrderSummaryInfo key={info.name} {...info} />
 			))}
