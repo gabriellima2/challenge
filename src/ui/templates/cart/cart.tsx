@@ -2,11 +2,10 @@
 import { CartOverview, CheckoutForm, Products } from './components'
 import { Error, ToBackButton } from '@/ui/atoms'
 
-import { useCartStore } from '@/store/cart-store'
+import { useCartState } from './hooks/use-cart-state'
 
 export const Cart = () => {
-	const cart = useCartStore((state) => state)
-	const hasProductsInCart = !!Object.keys(cart.items).length
+	const { hasProductsInCart } = useCartState()
 	return (
 		<article className="flex flex-col gap-4">
 			<ToBackButton />
