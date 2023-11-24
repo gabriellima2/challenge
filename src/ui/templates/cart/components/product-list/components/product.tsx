@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { ProductQuantity } from './product-quantity'
 import { RemoveButton } from '@/ui/atoms'
 
-import { useCurrencyFormatter } from '@/hooks/use-currency-formatter'
+import { useProductState } from '../hooks/use-product-state'
 
 type ProductProps = {
 	imageUrl: string
@@ -15,9 +15,11 @@ type ProductProps = {
 }
 
 export const Product = (props: ProductProps) => {
-	const { name, description, imageUrl, priceInCents, quantity, handleRemove } =
-		props
-	const total = useCurrencyFormatter(priceInCents * quantity)
+	const { name, description, imageUrl, handleRemove, ...rest } = props
+	const { quantity, total, handleQuantityChange } = useProductState({
+		initialQuantity: rest.quantity,
+		price: rest.priceInCents,
+	})
 	return (
 		<figure className="flex flex-wrap lg:max-w-[740px]">
 			<Image
@@ -36,7 +38,7 @@ export const Product = (props: ProductProps) => {
 				<footer className="flex flex-wrap items-end justify-between gap-4">
 					<ProductQuantity
 						value={quantity}
-						onQuantityChange={(value) => console.log('New quantity ' + value)}
+						onQuantityChange={handleQuantityChange}
 					/>
 					<p className="text-regular font-semibold text-font-tertiary">
 						{total}
