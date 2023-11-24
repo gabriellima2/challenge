@@ -1,11 +1,14 @@
 'use client'
-import { CartOverview, CheckoutForm, Products } from './components'
-import { Error, ToBackButton } from '@/ui/atoms'
+import { CartOverview, CheckoutForm, ProductList } from './components'
+import { Error, Loading, ToBackButton } from '@/ui/atoms'
 
+import { useCartProducts } from './hooks/use-cart-products'
 import { useCartState } from './hooks/use-cart-state'
 
 export const Cart = () => {
-	const { hasProductsInCart } = useCartState()
+	const { total, hasProductsInCart } = useCartState()
+	const { products, loading, error } = useCartProducts()
+
 	return (
 		<article className="flex flex-col gap-4">
 			<ToBackButton />
@@ -16,9 +19,16 @@ export const Cart = () => {
 							<h1 className="font-primary text-lg font-medium uppercase text-font-secondary">
 								Seu carrinho
 							</h1>
-							<CartOverview totalItems={3} totalPrice="R$ 64,50" />
+							<CartOverview totalItems={total} totalPrice="R$ 64,50" />
 						</header>
-						<Products />
+						{loading && <Loading className="p-4" />}
+						{!loading && error && <Error>{error.message}</Error>}
+						{!loading && !error && products && (
+							<ProductList
+								products={products}
+								handleRemoveFromCart={(id) => console.log(id)}
+							/>
+						)}
 					</main>
 					<aside className="flex-1 lg:max-w-[360px]">
 						<CheckoutForm
