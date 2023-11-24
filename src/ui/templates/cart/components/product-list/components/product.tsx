@@ -6,6 +6,7 @@ import { RemoveButton } from '@/ui/atoms'
 import { useProductState } from '../hooks/use-product-state'
 
 type ProductProps = {
+	id: string
 	imageUrl: string
 	name: string
 	description: string
@@ -17,6 +18,7 @@ type ProductProps = {
 export const Product = (props: ProductProps) => {
 	const { name, description, imageUrl, handleRemove, ...rest } = props
 	const { quantity, total, handleQuantityChange } = useProductState({
+		id: rest.id,
 		initialQuantity: rest.quantity,
 		price: rest.priceInCents,
 	})

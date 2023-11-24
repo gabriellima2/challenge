@@ -14,6 +14,7 @@ export const ProductList = (props: ProductListProps) => {
 			{products.map((product) => (
 				<li key={product.id}>
 					<Product
+						id={product.id}
 						name={product.name}
 						imageUrl={product.image_url}
 						description={product.description}

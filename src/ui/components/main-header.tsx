@@ -6,12 +6,12 @@ import { Header } from './header'
 import { useCartStore } from '@/store/cart-store'
 
 export const MainHeader = () => {
-	const { totalItems } = useCartStore((state) => state)
+	const { quantity } = useCartStore((state) => state)
 	return (
 		<Header>
 			<div className="flex w-full items-center justify-between gap-12 md:justify-normal">
 				<SearchBar onSearch={(v) => console.log(v)} />
-				<CartLink quantity={totalItems} />
+				<CartLink quantity={quantity} />
 			</div>
 		</Header>
 	)
