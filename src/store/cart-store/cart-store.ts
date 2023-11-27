@@ -24,10 +24,12 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
 		const newQuantityIsGreatherThanOld = newQuantity > product.quantity
 		set((state) => {
 			state.items[id].quantity = newQuantity
-			state.quantity = newQuantityIsGreatherThanOld
-				? state.quantity + 1
-				: state.quantity - 1
-			return state
+			return {
+				...state,
+				quantity: newQuantityIsGreatherThanOld
+					? state.quantity + 1
+					: state.quantity - 1,
+			}
 		})
 	},
 }))
