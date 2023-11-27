@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 import { useGetProductsByIds } from '@/hooks/use-get-products-by-ids'
 import { useCartStore } from '@/store/cart-store'
 
@@ -15,13 +13,10 @@ export function useCartProducts() {
 		ids: getCartProductsIds(items),
 	})
 
-	const products = useMemo(() => {
-		if (!data || !data.productsByIds) return
-		return data.productsByIds.map((product) => ({
-			...product,
-			quantity: Number(items[product.id]) || 1,
-		}))
-	}, [data, items])
+	const products = data?.productsByIds.map((product) => ({
+		...product,
+		quantity: Number(items[product.id].quantity) || 1,
+	}))
 
 	return {
 		products,

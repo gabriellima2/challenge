@@ -2,13 +2,19 @@
 import { CartOverview, CheckoutForm, ProductList } from './components'
 import { Error, Loading, ToBackButton } from '@/ui/atoms'
 
-import { useCartProducts } from './hooks/use-cart-products'
 import { useCartState } from './hooks/use-cart-state'
 
 export const Cart = () => {
-	const { total, hasProductsInCart } = useCartState()
-	const { products, loading, error } = useCartProducts()
-
+	const {
+		products,
+		error,
+		loading,
+		total,
+		delivery,
+		subtotal,
+		quantity,
+		hasProductsInCart,
+	} = useCartState({ delivery: 40 })
 	return (
 		<article className="flex flex-col gap-4">
 			<ToBackButton />
@@ -19,7 +25,7 @@ export const Cart = () => {
 							<h1 className="font-primary text-lg font-medium uppercase text-font-secondary">
 								Seu carrinho
 							</h1>
-							<CartOverview totalItems={total} totalPrice="R$ 64,50" />
+							<CartOverview totalItems={quantity} totalPrice={subtotal} />
 						</header>
 						{loading && <Loading className="p-4" />}
 						{!loading && error && <Error>{error.message}</Error>}
@@ -32,9 +38,9 @@ export const Cart = () => {
 					</main>
 					<aside className="flex-1 lg:max-w-[360px]">
 						<CheckoutForm
-							subtotal="R$ 161,00"
-							delivery="R$ 40,00"
-							total="R$ 201,00"
+							subtotal={subtotal}
+							delivery={delivery}
+							total={total}
 							handleCheckout={() => console.log('Checkout...')}
 						/>
 					</aside>
