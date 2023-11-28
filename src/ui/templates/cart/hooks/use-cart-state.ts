@@ -11,7 +11,7 @@ type UseCartStateParams = {
 
 export function useCartState(params: UseCartStateParams) {
 	const { delivery: deliveryUnformmated } = params
-	const { items, quantity } = useCartStore((state) => state)
+	const { items, quantity, remove } = useCartStore((state) => state)
 	const { products, loading, error } = useCartProducts()
 	const hasProductsInCart = !!Object.keys(items).length
 
@@ -41,5 +41,6 @@ export function useCartState(params: UseCartStateParams) {
 		products,
 		loading,
 		error,
+		handleRemoveProductFromCart: remove,
 	}
 }

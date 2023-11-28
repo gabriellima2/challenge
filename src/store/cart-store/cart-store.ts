@@ -18,7 +18,18 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
 			items: { ...state.items, [id]: { id, quantity: 1 } },
 		}))
 	},
-	remove: (id: string) => console.log('Removing... ' + id),
+	remove: (id: string) => {
+		const state = get()
+		const product = state.items[id]
+		if (!product) throw new Error('Produto não encontrado no carrinho')
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { [id]: removedProduct, ...items } = state.items
+		set((state) => ({
+			...state,
+			items,
+			quantity: state.quantity - product.quantity,
+		}))
+	},
 	update: (id: string, newQuantity: number) => {
 		const state = get()
 		const product = state.items[id]

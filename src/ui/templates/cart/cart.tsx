@@ -14,6 +14,7 @@ export const Cart = () => {
 		subtotal,
 		quantity,
 		hasProductsInCart,
+		handleRemoveProductFromCart,
 	} = useCartState({ delivery: 40 })
 	return (
 		<article className="flex flex-col gap-4">
@@ -32,7 +33,7 @@ export const Cart = () => {
 						{!loading && !error && products && (
 							<ProductList
 								products={products}
-								handleRemoveFromCart={(id) => console.log(id)}
+								handleRemoveFromCart={handleRemoveProductFromCart}
 							/>
 						)}
 					</main>
