@@ -1,16 +1,19 @@
 'use client'
 import { Product } from './components/product'
+
+import { cn } from '@/helpers/cn'
 import type { ProductEntity } from '@/entities/product.entity'
 
 type ProductListProps = {
 	products: (ProductEntity & { quantity: number })[]
 	handleRemoveFromCart: (id: string) => void
+	className?: string
 }
 
 export const ProductList = (props: ProductListProps) => {
-	const { products, handleRemoveFromCart } = props
+	const { products, handleRemoveFromCart, className } = props
 	return (
-		<ol>
+		<ol className={cn('flex flex-col gap-6', className)}>
 			{products.map((product) => (
 				<li key={product.id}>
 					<Product

@@ -1,4 +1,4 @@
-import { Product } from '../../../components/product'
+import { Product } from '@/ui/components/product'
 
 import { cn } from '@/helpers/cn'
 import type { ProductEntity } from '@/entities/product.entity'
