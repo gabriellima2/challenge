@@ -1,5 +1,10 @@
 'use client'
-import { CartOverview, CheckoutForm, ProductList } from './components'
+import {
+	CartOverview,
+	CheckoutForm,
+	OtherLinks,
+	ProductList,
+} from './components'
 import { Error, Loading, ToBackButton } from '@/ui/atoms'
 
 import { useCartState } from './hooks/use-cart-state'
@@ -17,10 +22,10 @@ export const Cart = () => {
 		handleRemoveProductFromCart,
 	} = useCartState({ delivery: 40 })
 	return (
-		<article className="flex flex-col gap-4">
+		<article className="flex flex-col gap-4 pb-8 lg:h-[85dvh]">
 			<ToBackButton />
 			{hasProductsInCart ? (
-				<section className="flex flex-col flex-wrap justify-between gap-8 lg:flex-row lg:gap-0">
+				<section className="flex h-full flex-col flex-wrap justify-between gap-8 lg:flex-row lg:gap-0">
 					<main className="flex flex-col gap-8">
 						<header className="flex flex-col gap-2">
 							<h1 className="font-primary text-lg font-medium uppercase text-font-secondary">
@@ -37,13 +42,14 @@ export const Cart = () => {
 							/>
 						)}
 					</main>
-					<aside className="flex-1 lg:max-w-[360px]">
+					<aside className="flex flex-1 flex-col justify-between gap-8 lg:max-w-[360px]">
 						<CheckoutForm
 							subtotal={subtotal}
 							delivery={delivery}
 							total={total}
 							handleCheckout={() => console.log('Checkout...')}
 						/>
+						<OtherLinks />
 					</aside>
 				</section>
 			) : (
