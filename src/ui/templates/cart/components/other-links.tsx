@@ -1,4 +1,4 @@
-import { TextLink } from '@/ui/atoms/text-link'
+import { TextLink } from '@/ui/atoms'
 
 const links = [
 	{

@@ -2,6 +2,7 @@
 import {
 	CartOverview,
 	CheckoutForm,
+	EmptyCart,
 	OtherLinks,
 	ProductList,
 } from './components'
@@ -53,7 +54,7 @@ export const Cart = () => {
 					</aside>
 				</section>
 			) : (
-				<Error>Carrinho Vazio!</Error>
+				<EmptyCart />
 			)}
 		</article>
 	)
