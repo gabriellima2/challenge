@@ -43,7 +43,7 @@ export const productResolvers: ProductResolvers = {
 		product(_, params) {
 			const { id } = params
 			const findedProduct = products.filter((product) => product.id === id)
-			if (!findedProduct) return
+			if (!findedProduct || !findedProduct.length) return
 			return findedProduct[0]
 		},
 		productsByIds(_, params) {
