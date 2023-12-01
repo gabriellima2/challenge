@@ -16,8 +16,8 @@ export function paginate<T>(
 		throw new InvalidTypeException()
 	}
 	if (page < 0 || limit < 0) throw new InvalidParamsException()
-	const skip = page * limit
 	const start = (page - 1) * limit
+	const skip = start + limit
 	const total = data.length
 	if (limit > total) throw new InvalidQuantityException()
 	if (start > total) throw new InvalidQuantityException()
