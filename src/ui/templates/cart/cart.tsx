@@ -16,12 +16,12 @@ export const Cart = () => {
 		error,
 		loading,
 		total,
-		delivery,
+		shipping,
 		subtotal,
 		quantity,
 		hasProductsInCart,
 		handleRemoveProductFromCart,
-	} = useCartState({ delivery: 40 })
+	} = useCartState()
 	return (
 		<article className="flex flex-col gap-4 pb-8 lg:h-[85dvh]">
 			<ToBackButton />
@@ -46,7 +46,7 @@ export const Cart = () => {
 					<aside className="flex flex-1 flex-col justify-between gap-8 lg:max-w-[360px]">
 						<CheckoutForm
 							subtotal={subtotal}
-							delivery={delivery}
+							shipping={shipping}
 							total={total}
 							handleCheckout={() => console.log('Checkout...')}
 						/>

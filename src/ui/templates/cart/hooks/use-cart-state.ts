@@ -5,12 +5,10 @@ import { useCartStore } from '@/store/cart-store'
 
 import { currencyFormatter } from '@/helpers/currency-formatter'
 
-type UseCartStateParams = {
-	delivery: number
-}
+const BASE_SHIPPING = 40
+const PAID_SHIPPING_LIMIT = 900
 
-export function useCartState(params: UseCartStateParams) {
-	const { delivery: deliveryUnformmated } = params
+export function useCartState() {
 	const { items, quantity, remove } = useCartStore((state) => state)
 	const { products, loading, error } = useCartProducts()
 	const hasProductsInCart = !!Object.keys(items).length
@@ -23,21 +21,24 @@ export function useCartState(params: UseCartStateParams) {
 		}, 0)
 	}, [products])
 
+	const hasFreeShipping = !!calcSubtotal && calcSubtotal < PAID_SHIPPING_LIMIT
+
 	const calTotal = useMemo(() => {
 		const subtotal = calcSubtotal || 0
-		return subtotal + deliveryUnformmated
-	}, [calcSubtotal, deliveryUnformmated])
+		if (hasFreeShipping) return subtotal
+		return subtotal + BASE_SHIPPING
+	}, [calcSubtotal, hasFreeShipping])
 
 	const total = currencyFormatter.format(calTotal || 0)
 	const subtotal = currencyFormatter.format(calcSubtotal || 0)
-	const delivery = currencyFormatter.format(deliveryUnformmated)
+	const shipping = currencyFormatter.format(hasFreeShipping ? BASE_SHIPPING : 0)
 
 	return {
 		hasProductsInCart,
 		quantity,
 		subtotal,
 		total,
-		delivery,
+		shipping,
 		products,
 		loading,
 		error,

@@ -3,13 +3,13 @@ import { OrderSummary } from './components/order-summary'
 
 type CheckoutFormProps = {
 	subtotal: string
-	delivery: string
+	shipping: string
 	total: string
 	handleCheckout: () => void
 }
 
 export const CheckoutForm = (props: CheckoutFormProps) => {
-	const { subtotal, total, delivery, handleCheckout } = props
+	const { subtotal, total, shipping, handleCheckout } = props
 	return (
 		<form
 			onSubmit={(e) => {
@@ -24,7 +24,7 @@ export const CheckoutForm = (props: CheckoutFormProps) => {
 			<OrderSummary
 				infos={[
 					{ name: 'Subtotal de produtos', value: subtotal },
-					{ name: 'Entrega', value: delivery },
+					{ name: 'Entrega', value: shipping },
 				]}
 			/>
 			<p className="flex justify-between font-semibold text-font-secondary">

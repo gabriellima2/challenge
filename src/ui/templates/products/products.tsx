@@ -9,7 +9,6 @@ type ProductsProps = { id: string }
 export const Products = (props: ProductsProps) => {
 	const { id } = props
 	const { product, loading, error, handleAddToCart } = useProductsState({ id })
-
 	return (
 		<article className="flex flex-col gap-4 pb-5 pt-2">
 			<ToBackButton />
